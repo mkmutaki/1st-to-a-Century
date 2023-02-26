@@ -12,7 +12,7 @@ const btnHold = document.querySelector('.btn--hold');
 const Player0El = document.querySelector('.player--0');
 const Player1El = document.querySelector('.player--1');
 
-let playing, scores, currentScore, activePlayer;
+let play, scores, currentScore, activePlayer;
 
 // Starting conditions
 
@@ -28,7 +28,7 @@ Swal.fire({
 });
 
 function init() {
-  playing = true;
+  play = true;
   scores = [0, 0];
   currentScore = 0;
   activePlayer = 0;
@@ -56,7 +56,7 @@ function switchPlayer() {
 
 //Rolling dice functionality
 btnRoll.addEventListener('click', function Roll() {
-  if (playing) {
+  if (play) {
     // Generating random dice roll
     const dice = Math.trunc(Math.random() * 6) + 1;
 
@@ -78,7 +78,7 @@ btnRoll.addEventListener('click', function Roll() {
 });
 
 btnHold.addEventListener('click', function () {
-  if (playing) {
+  if (play) {
     // Add current score to active player's total score
     scores[activePlayer] += currentScore;
     document.getElementById(`score--${activePlayer}`).textContent =
@@ -87,7 +87,7 @@ btnHold.addEventListener('click', function () {
     // Check if player's score is >=100
     if (scores[activePlayer] >= 100) {
       // Finish the game
-      playing = false;
+      play = false;
       document
         .querySelector(`.player--${activePlayer}`)
         .classList.add('player--winner');
